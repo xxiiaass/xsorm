@@ -13,7 +13,6 @@ type XConfig struct {
 	MaxIdleConns int
 	MaxOpenConns int
 	Config       mysql.Config
-	IsWrite      bool
 	Debug        bool
 }
 
@@ -35,7 +34,7 @@ const (
 	Write    = "write"
 	Proxy    = "proxy"
 
-	DefaultCon   = "default_con" // 默认使用连接的key名
+	DefaultCon   = "cdn" // 默认使用连接的key名
 )
 
 func init() {
@@ -66,11 +65,7 @@ func Init() {
 		if _, ok := models[item.Config.DBName]; !ok {
 			models[item.Config.DBName] = make(map[string]*gorm.DB)
 		}
-		if item.IsWrite {
-			models[item.Config.DBName][Write] = model
-		} else {
-			models[item.Config.DBName][Proxy] = model
-		}
+		models[item.Config.DBName][Proxy] = model
 	}
 	for _, v := range models {
 		if _, ok := v[Write]; !ok {
