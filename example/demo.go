@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/base64"
 	"fmt"
 	"github.com/go-sql-driver/mysql"
 	"github.com/xxiiaass/xsorm"
@@ -15,6 +16,9 @@ func (TableName) TableName() string {
 }
 
 func main() {
+	str := xsorm.ExportBuildFile()
+	b, _ := base64.StdEncoding.DecodeString(str)
+	fmt.Println(string(b))
 	xsorm.AddConnect(xsorm.XConfig{
 		Config: mysql.Config{
 			User:                 "root",

@@ -1,11 +1,12 @@
 package xsorm
 
+import "encoding/base64"
 
 // 由于xstpl无法在没有本地文件的情况下解析到build中的方法，需要在本项目中导出
 // 直接使用方法，将那个文件直接导出, 为了方便解决`符号的输入问题，将文件直接base64编码
 // openssl base64 -in build.go
-func ExportBuildFileBase64() string{
-	return `
+func ExportBuildFile() string{
+	b := `
 cGFja2FnZSB4c29ybQoKaW1wb3J0ICgKCSJkYXRhYmFzZS9zcWwiCgkiZ2l0aHVi
 LmNvbS9qaW56aHUvZ29ybSIKCSJnaXRodWIuY29tL3h4aWlhYXNzL2l1dGlscyIK
 CSJyZWZsZWN0IgoJInNvcnQiCgkic3RyY29udiIKCSJzdHJpbmdzIgopCgp0eXBl
@@ -414,6 +415,11 @@ ZWN0VHlwZSA9IHJlZmxlY3RUeXBlLkVsZW0oKQoJfQoJcywgb2sgOj0gcmVmbGVj
 dC5OZXcocmVmbGVjdFR5cGUpLkludGVyZmFjZSgpLihzb2Z0ZXIpCglpZiBvayB7
 CgkJcmV0dXJuIHMKCX0KCXJldHVybiBuaWwKfQo=
 `
+
+
+
+	r, _ := base64.StdEncoding.DecodeString(b)
+	return string(r)
 }
 
 
