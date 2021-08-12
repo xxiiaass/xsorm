@@ -24,7 +24,7 @@ func main() {
 			AllowNativePasswords: true,
 			Net:                  "tcp",
 		},
-		Debug:   true,
+		Debug: true,
 	})
 	xsorm.Init()
 
@@ -32,4 +32,5 @@ func main() {
 	xsorm.NewBuild(tb).Where("column_1", 2).First()
 
 	fmt.Println(tb.Column1)
+
 }
