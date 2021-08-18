@@ -33,9 +33,9 @@ const (
 	ReadOnly = "readonly"
 	Write    = "write"
 	Proxy    = "proxy"
-
-	DefaultCon   = "cdn" // 默认使用连接的key名
 )
+
+var DefaultCon = "default" // 默认使用连接的key名
 
 func init() {
 	log = defaultLog{} // 初始化日志接口为无操作
