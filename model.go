@@ -45,7 +45,7 @@ func AddConnect(config XConfig) {
 	xconfigs = append(xconfigs, config)
 }
 
-func SetLogger(logger gorm.Logger) {
+func SetLogger(logger Log) {
 	log = logger
 }
 
