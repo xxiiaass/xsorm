@@ -43,6 +43,9 @@ func init() {
 
 func AddConnect(config XConfig) {
 	xconfigs = append(xconfigs, config)
+	if len(xconfigs) == 1 {
+		DefaultCon = xconfigs[0].Config.DBName
+	}
 }
 
 func SetLogger(logger Log) {
